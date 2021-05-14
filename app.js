@@ -77,6 +77,6 @@ app.use(function (err, req, res, next) {
   res.render("error");
 });
 
-console.log('http://localhost:3000/home')
+console.log('http://localhost:8000/home')
 
 module.exports = app;

@@ -22,12 +22,17 @@ router.get("/one-product/:id", (req, res,next) => {
 });
 
 router.get("/signup", (req, res) => {
-  res.send("sneak");
+  res.render("signup");
 });
 
 router.get("/signin", (req, res) => {
-  res.send("love");
+  res.render("signin");
 });
 
+router.get("/signout", (req, res) => {
+  req.session.destroy(function (err) {
+    res.redirect("signin");
+  });
+});
 
 module.exports = router;
