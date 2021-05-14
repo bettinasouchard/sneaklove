@@ -11,7 +11,7 @@ router.get("/products_manage", (req, res, next) => {
 
 // GET edit one sneaker
 router.get("/product-edit/:id", (req, res, next) => {
-    SneakerModel.findById(req.params.id)
+    SneakerModel.findById(req.params.id).populate("tag")
     .then((result) => res.render("product_edit.hbs", { sneaker: result }))
     .catch(next);
 });

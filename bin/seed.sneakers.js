@@ -10,6 +10,7 @@ const sneakers = [
     description: "fast shoes",
     price: 100,
     category: "men",
+    tags: null,
   },
   {
     name: "Puma",
