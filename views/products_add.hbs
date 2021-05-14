@@ -1,5 +1,5 @@
 <div class="big-container product-manage-wrapper flexed-item">
-  <form action="/prod-add" method="get" class="add-product-form" enctype="multiparty/form-data">
+  <form action="/products-add" method="post" class="add-product-form" enctype="multiparty/form-data">
     {{#if msg}}
     <p class="msg {{msg.statu}}">{{msg.txt}}</p>
     {{/if}}
@@ -59,3 +59,4 @@
     <button id="btn_new_tag" class="button-primary add-category-btn">Create this category</button>
   </div>
 </div>
+
