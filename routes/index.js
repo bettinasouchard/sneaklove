@@ -16,7 +16,9 @@ router.get("/sneakers/collection", async (req, res, next) => {
 });
 
 router.get("/one-product/:id", (req, res,next) => {
-  SneakerModel.findById(req.params.id).populate('tag')
+  SneakerModel.findById(req.params.id, req.body).populate('tag')
+  .then((result) => res.render("one_product", {sneaker : result}))
+  .catch(next)
 });
 
 router.get("/signup", (req, res) => {
