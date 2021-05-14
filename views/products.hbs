@@ -4,7 +4,7 @@
   <aside class="tag-wrapper">
     <h4 class="tag-title">All Tags</h4>
     <ul id="tag_list" class="tag-list" data-category="{{category}}">
-      {{#each tags}}
+      {{#each tag}}
       <li class="tag-list-item">
         <input id="input_{{this._id}}" type="checkbox" data-tag-id="{{this._id}}" class="checkbox" />
         <label for="input_{{this._id}}">{{this.name}}</label>
