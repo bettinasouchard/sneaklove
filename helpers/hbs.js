@@ -1,7 +1,24 @@
 const hbs = require("hbs");
-
+const moment = require("moment");
 // CUSTOM HELPERS
 
+hbs.registerHelper("isSelected", function (needle, haystack) {
+  return Array.isArray(haystack)
+    ? haystack.map((e) => e.name).includes(needle)
+      ? "selected"
+      : ""
+    : haystack.name === needle
+    ? "selected"
+    : "";
+});
+
+hbs.registerHelper("toLowerCase", function (str) {
+  return str.toLowerCase();
+});
+
+hbs.registerHelper("toJSON", (val) => JSON.stringify(val));
+
+hbs.registerHelper("increment", (val, count) => Number(val) + Number(count));
 // function below: add the ternary operator functionnality to .hbs files
 // usage : {{ternary true "yay" "nay "}} => prints yay
 // usage : {{ternary NaN "yay" "nay "}} => prints nay
@@ -63,4 +80,8 @@ hbs.registerHelper("compare", function(lvalue, rvalue, options) {
   } else {
     return options.inverse(this);
   }
+});
+
+hbs.registerHelper("formatDate", function (date) {
+  return moment(date).format("YYYY-MM-DD");
 });
