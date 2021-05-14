@@ -15,8 +15,8 @@ router.get("/sneakers/collection", async (req, res, next) => {
   }
 });
 
-router.get("/one-product/:id", (req, res) => {
-  res.send("baz");
+router.get("/one-product/:id", (req, res,next) => {
+  SneakerModel.findById(req.params.id).populate('tag')
 });
 
 router.get("/signup", (req, res) => {

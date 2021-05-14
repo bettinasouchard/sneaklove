@@ -1,6 +1,6 @@
 require("dotenv").config();
-require("./../config/mongodb"); // fetch the db connection
-const SneakerModel = require("./../models/Sneaker"); // fetch the model to validate our user document before insertion (in database)
+require("../config/mongodb"); // fetch the db connection
+const SneakerModel = require("../models/Sneaker"); // fetch the model to validate our user document before insertion (in database)
 
 const sneakers = [
   {
