@@ -2,11 +2,26 @@ const express = require("express");
 const router = express.Router();
 const Sneaker = require("../models/Sneaker");
 const bcrypt = require("bcrypt");
+const UserModel = require("./../models/User")
 
+router.get("/signup", (req, res) => {
+  res.render("signup");
+});
+
+router.get("/signin", (req, res) => {
+  res.render("signin");
+});
+
+router.get("/logout", (req, res) => {
+  req.session.destroy(function (err) {
+    res.redirect("signin");
+  });
+});
 
 router.post("/signin", async (req, res, next) => {
   const { email, password } = req.body;
-  const foundUser = await User.findOne({ email: email });
+  const foundUser = await UserModel.findOne({ email: email });
+  console.log("foundUser1 =", foundUser);
   if (!foundUser) {
     req.flash("error", "Invalid Credentials");
     res.redirect("/signin");
@@ -28,14 +43,17 @@ router.post("/signin", async (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
   try {
     const newUser = { ...req.body };
-    const foundUser = await User.findOne({ email: newUser.email });
+    const foundUser = await UserModel.findOne({ email: newUser.email });
+    console.log("foundUser = ", foundUser)
     if (foundUser) {
+      console.log("user exists")
       req.flash("warning", "email already registered");
       res.redirect("/signup");
     } else {
+      console.log("EH OH")
       const hashedPassword = bcrypt.hashSync(newUser.password, 10);
       newUser.password = hashedPassword;
-      await User.create(newUser);
+      await UserModel.create(newUser);
       req.flash("success", "congrats! You are registered");
       res.redirect("/signin");
     }

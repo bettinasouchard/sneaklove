@@ -2,6 +2,7 @@ const express = require("express");
 const { NotExtended } = require("http-errors");
 const SneakerModel = require("../models/Sneaker");
 const router = new express.Router();
+const UserModel = require("./../models/User");
 
 router.get("/home", (req, res) => {
   res.render("index");
@@ -19,20 +20,6 @@ router.get("/one-product/:id", (req, res,next) => {
   SneakerModel.findById(req.params.id, req.body).populate('tag')
   .then((result) => res.render("one_product", {sneaker : result}))
   .catch(next)
-});
-
-router.get("/signup", (req, res) => {
-  res.render("signup");
-});
-
-router.get("/signin", (req, res) => {
-  res.render("signin");
-});
-
-router.get("/signout", (req, res) => {
-  req.session.destroy(function (err) {
-    res.redirect("signin");
-  });
 });
 
 module.exports = router;
